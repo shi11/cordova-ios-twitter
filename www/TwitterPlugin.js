@@ -1,7 +1,9 @@
-/**
- * @constructor
- */
-var Twitter = function(){};
+
+var exec = require('cordova/exec');
+
+var Twitter = function() {
+    this.serviceName = this.serviceName;
+};
 /**
  * Checks if the Twitter SDK is loaded
  * @param {Function} response callback on result
@@ -12,7 +14,7 @@ var Twitter = function(){};
  *      });
  */
 Twitter.prototype.isTwitterAvailable = function(response){
-    cordova.exec(response, null, "TwitterPlugin", "isTwitterAvailable", []);
+    exec(response, null, this.serviceName, "isTwitterAvailable", []);
 };
 /**
  * Checks if the Twitter SDK can send a tweet
@@ -24,7 +26,7 @@ Twitter.prototype.isTwitterAvailable = function(response){
  *      });
  */
 Twitter.prototype.isTwitterSetup = function(response){
-    cordova.exec(response, null, "TwitterPlugin", "isTwitterSetup", []);
+    exec(response, null, this.serviceName, "isTwitterSetup", []);
 };
 /**
  * Sends a Tweet to Twitter
@@ -50,7 +52,7 @@ Twitter.prototype.isTwitterSetup = function(response){
 Twitter.prototype.composeTweet = function(success, failure, tweetText, options){
     options = options || {};
     options.text = tweetText;
-    cordova.exec(success, failure, "TwitterPlugin", "composeTweet", [options]);
+    exec(success, failure, this.serviceName, "composeTweet", [options]);
 };
 /**
  * Gets Tweets from Twitter Timeline
@@ -67,7 +69,7 @@ Twitter.prototype.composeTweet = function(success, failure, tweetText, options){
  * [Twitter Timeline Doc]: https://dev.twitter.com/docs/api/1/get/statuses/public_timeline
  */
 Twitter.prototype.getPublicTimeline = function(success, failure){
-    cordova.exec(success, failure, "TwitterPlugin", "getPublicTimeline", []);
+    exec(success, failure, this.serviceName, "getPublicTimeline", []);
 };
 /**
  * Gets Tweets from Twitter Mentions
@@ -84,7 +86,7 @@ Twitter.prototype.getPublicTimeline = function(success, failure){
  * [Twitter Timeline Doc]: https://dev.twitter.com/docs/api/1/get/statuses/public_timeline
  */
 Twitter.prototype.getMentions = function(success, failure){
-    cordova.exec(success, failure, "TwitterPlugin", "getMentions", []);
+    exec(success, failure, this.serviceName, "getMentions", []);
 };
 /**
  * Gets Tweets from Twitter Mentions API
@@ -97,7 +99,7 @@ Twitter.prototype.getMentions = function(success, failure){
  * [Twitter Mentions Doc]: https://dev.twitter.com/docs/api/1/get/statuses/mentions
  */
 Twitter.prototype.getTwitterUsername = function(success, failure) {
-    cordova.exec(success, failure, "TwitterPlugin", "getTwitterUsername", []);
+    exec(success, failure, this.serviceName, "getTwitterUsername", []);
 };
 /**
  * Gets Tweets from Twitter Mentions API
@@ -124,7 +126,7 @@ Twitter.prototype.getTWRequest = function(url, params, success, failure, options
     options = options || {};
     options.url = url;
     options.params = params;
-    cordova.exec(success, failure, "TwitterPlugin", "getTWRequest", [options]);
+    exec(success, failure, this.serviceName, "getTWRequest", [options]);
 };
 /**
  * Gets Twitter oauth_token and oauth_token_secret by using reverse auth. This information will be 
@@ -146,7 +148,7 @@ Twitter.prototype.getTWRequest = function(url, params, success, failure, options
  * [Twitter Reverse Auth Doc]: https://dev.twitter.com/docs/ios/using-reverse-auth
  */
 Twitter.prototype.getReverseAuthToken = function(success, failure, options){
-    cordova.exec(success, failure, "TwitterPlugin", "startTWReverseAuth", [options]);
+    exec(success, failure, this.serviceName, "startTWReverseAuth", [options]);
 };
 
 // Plug in to Cordova

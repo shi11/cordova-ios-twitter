@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        id="com.rd11.cordova-ios-twitter"
+        version="2.0.0">
+
+    <name>iOS Twitter Plugin</name>
+    <description>Cordova plugin for the native ios twitter implementation</description>
+    <license>see License.md</license>
+
+    <engines>
+        <engine name="cordova" version=">=3.0.0" />
+    </engines>
+
+    <js-module src="www/TwitterPlugin.js" name="TwitterPlugin">
+        <clobbers target="Twitter" />
+    </js-module>
+
+    <access origin="*.twitter.com" />
+
+    <!-- ios -->
+    <platform name="ios">
+
+        <config-file target="config.xml" parent="/widget">
+            <feature name="Twitter">
+                <param name="ios-package" value="TwitterPlugin"/>
+            </feature>
+        </config-file>
+
+        <header-file src="src/TwitterPlugin.h" />
+        <source-file src="src/TwitterPlugin.m" />
+
+    </platform>
+
+</plugin>
